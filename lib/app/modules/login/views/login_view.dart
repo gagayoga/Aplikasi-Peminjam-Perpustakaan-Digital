@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_rplb_35/app/routes/app_pages.dart';
@@ -126,6 +127,7 @@ class LoginView extends GetView<LoginController> {
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                 child: TextFormField(
                                   controller: controller.passwordController,
+                                  obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: 'Masukan Password',
                                     border: OutlineInputBorder(
@@ -189,7 +191,7 @@ class LoginView extends GetView<LoginController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Sudah punya akun ?',
+                          'Belum punya akun ?',
                           style: TextStyle(
                             fontSize: 16.0,
                             color: Color(0xFF61677D),
@@ -229,7 +231,6 @@ class LoginView extends GetView<LoginController> {
                       children: [
 
                         SizedBox(
-                          width: 150.0,
                           height: 1,
                           child: ColoredBox(
                             color: Color(0xFF61677D),
@@ -256,7 +257,6 @@ class LoginView extends GetView<LoginController> {
                         ),
 
                         SizedBox(
-                          width: 150.0,
                           height: 1,
                           child: ColoredBox(
                             color: Color(0xFF61677D),
@@ -267,7 +267,62 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
 
-                  b
+                  Container(
+                    margin: const EdgeInsets.only(top: 25.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget> [
+                        Expanded(
+                          child: SizedBox(
+                            height: 45.0,
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFFFAFAFA),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              icon: const Icon(
+                                FontAwesomeIcons.facebook,
+                                color: Color(0xFF080ba1),
+                              ),
+                              label: const Text(
+                                'Facebook',
+                                style: TextStyle(
+                                  color: Color(0xFF61677D),
+                                ),
+                              ),
+                              onPressed: () {
+                                // Tambahkan fungsi untuk tombol Facebook di sini
+                              },
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(width: 5),
+
+                        Expanded(
+                          child: SizedBox(
+                            height: 45.0,
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFF080ba1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              icon: Icon(FontAwesomeIcons.google),
+                              label: Text('Google'),
+                              onPressed: () {
+                                // Tambahkan fungsi untuk tombol Facebook di sini
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
 
                 ]
             ),

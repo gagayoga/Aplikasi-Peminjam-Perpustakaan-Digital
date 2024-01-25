@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peminjam_perpustakaan_rplb_35/app/data/model/response_login.dart';
 
 import '../../../data/constant/endpoint.dart';
 import '../../../data/provider/api_provider.dart';
@@ -56,8 +58,20 @@ class LoginController extends GetxController {
             )
         );
         if (response.statusCode == 200) {
+          ResponseLogin responseLogin = ResponseLogin.fromJson(response.data);
           await StorageProvider.write(StorageKey.status, "logged");
+          await StorageProvider.write(StorageKey.username, responseLogin.data!.username.toString());
+          await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id.toString());
           Get.offAllNamed(Routes.HOME);
+
+          ArtSweetAlert.show(
+              context: Get.context!,
+              artDialogArgs: ArtDialogArgs(
+                type: ArtSweetAlertType.success,
+                title: "Ruang Pustaka",
+                text: "Login Berhasil, Welcome " + usernameController.text.toString(),
+              )
+          );
         } else {
           Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.red);
         }
@@ -68,14 +82,14 @@ class LoginController extends GetxController {
       if (e.response != null) {
         if (e.response?.data != null) {
           Get.snackbar("Sorry", "${e.response?.data['message']}",
-              backgroundColor: Colors.red);
+              backgroundColor: Colors.red, colorText: Colors.white);
         }
       } else {
-        Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red);
+        Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red, colorText: Colors.white);
       }
     } catch (e) {
       loadinglogin(false);
-      Get.snackbar("Error", e.toString(), backgroundColor: Colors.red);
+      Get.snackbar("Error", e.toString(), backgroundColor: Colors.red, colorText: Colors.white);
     }
   }
 }

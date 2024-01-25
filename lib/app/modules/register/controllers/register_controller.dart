@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,10 +57,19 @@ class RegisterController extends GetxController {
             });
 
         if (response.statusCode == 201) {
-          Get.snackbar("Information", "Register Succes", backgroundColor: Colors.green);
+          Get.snackbar("Information", "Register Succes", backgroundColor: Colors.green, colorText: Colors.white);
           Get.offAllNamed(Routes.LOGIN);
+
+          ArtSweetAlert.show(
+              context: Get.context!,
+              artDialogArgs: ArtDialogArgs(
+                type: ArtSweetAlertType.success,
+                title: "Ruang Pustaka",
+                text: "Register Berhasil, Silakan Login Kembali ",
+              )
+          );
         } else {
-          Get.snackbar("Sorry", "Register Gagal", backgroundColor: Colors.red);
+          Get.snackbar("Sorry", "Register Gagal", backgroundColor: Colors.red, colorText: Colors.white);
         }
       }
       loadingregister(false);
@@ -69,15 +79,15 @@ class RegisterController extends GetxController {
       if (e.response != null) {
         if (e.response?.data != null) {
           Get.snackbar("Sorry", "${e.response?.data['message']}",
-              backgroundColor: Colors.red);
+              backgroundColor: Colors.red, colorText: Colors.white);
         }
       } else {
-        Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red);
+        Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red, colorText: Colors.white);
       }
 
     } catch (e) {
       loadingregister(false);
-      Get.snackbar("Error", e.toString(), backgroundColor: Colors.red);
+      Get.snackbar("Error", e.toString(), backgroundColor: Colors.red, colorText: Colors.white);
     }
   }
 }
