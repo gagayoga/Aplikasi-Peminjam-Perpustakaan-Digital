@@ -92,13 +92,14 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                 child: DateTimePicker(
+                                  controller: controller.tanggalPinjamController,
                                   decoration: InputDecoration(
-                                    hintText: 'Masukan Tanggal Kembali',
+                                    hintText: 'Masukan Tanggal Pinjam',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
-                                  initialValue: '',
+                                  dateMask: 'yyyy-MM-dd',
                                   firstDate: DateTime(2000),
                                   lastDate: DateTime(2100),
                                   dateLabelText: 'Date',
@@ -109,23 +110,7 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                                   },
                                   onSaved: (val) => print(val),
                                 )
-                                // TextFormField(
-                                //   controller: controller.tanggalPinjamController,
-                                //   decoration: InputDecoration(
-                                //     hintText: 'Masukan Tanggal Pinjam',
-                                //     border: OutlineInputBorder(
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //   ),
-                                //   validator: (value){
-                                //     if (value!.isEmpty){
-                                //       return 'Tanggal Pinjam tidak boleh kosong!';
-                                //     }
-                                //     return null;
-                                //   },
-                                // ),
                               ),
-
                             ],
                           ),
                         ),
@@ -146,34 +131,38 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color: Color(0xFF61677D),
-                                    letterSpacing: -0.3,
+                                    letterSpacing: -0.2,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
 
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                child: TextFormField(
-                                  controller: controller.tanggalKembaliController,
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    hintText: 'Masukan Tanggal Kembali',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                  child: DateTimePicker(
+                                    controller: controller.tanggalKembaliController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Masukan Tanggal Kembali',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
-                                  ),
-                                  validator: (value){
-                                    if (value!.isEmpty){
-                                      return 'Tanggal Pinjam tidak boleh kosong!';
-                                    }
-                                    return null;
-                                  },
-                                ),
+                                    dateMask: 'yyyy-MM-dd',
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2100),
+                                    dateLabelText: 'Date',
+                                    onChanged: (val) => print(val),
+                                    validator: (val) {
+                                      print(val);
+                                      return null;
+                                    },
+                                    onSaved: (val) => print(val),
+                                  )
                               ),
+
                             ],
                           ),
-                        )
+                        ),
 
                       ],
                     ),
