@@ -1,3 +1,4 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -90,21 +91,39 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
 
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                child: TextFormField(
-                                  controller: controller.tanggalPinjamController,
+                                child: DateTimePicker(
                                   decoration: InputDecoration(
-                                    hintText: 'Masukan Tanggal Pinjam',
+                                    hintText: 'Masukan Tanggal Kembali',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
-                                  validator: (value){
-                                    if (value!.isEmpty){
-                                      return 'Tanggal Pinjam tidak boleh kosong!';
-                                    }
+                                  initialValue: '',
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                  dateLabelText: 'Date',
+                                  onChanged: (val) => print(val),
+                                  validator: (val) {
+                                    print(val);
                                     return null;
                                   },
-                                ),
+                                  onSaved: (val) => print(val),
+                                )
+                                // TextFormField(
+                                //   controller: controller.tanggalPinjamController,
+                                //   decoration: InputDecoration(
+                                //     hintText: 'Masukan Tanggal Pinjam',
+                                //     border: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(10),
+                                //     ),
+                                //   ),
+                                //   validator: (value){
+                                //     if (value!.isEmpty){
+                                //       return 'Tanggal Pinjam tidak boleh kosong!';
+                                //     }
+                                //     return null;
+                                //   },
+                                // ),
                               ),
 
                             ],
